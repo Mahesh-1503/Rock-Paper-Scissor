@@ -60,6 +60,11 @@ img {
 
 .msg-container {
   margin-top: 5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
 }
 
 #msg {
@@ -69,6 +74,20 @@ img {
   display: inline;
   padding: 1rem;
   border-radius: 1rem;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/* For screens with a maximum width of 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  .msg-container {
+    padding: 0.2rem;
+  }
+
+  #msg {
+    font-size: 1rem;
+    padding: 0.2rem;
+  }
 }
 
 /* Add media queries for responsiveness */
