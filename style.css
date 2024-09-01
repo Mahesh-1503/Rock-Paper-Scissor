@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  box-sizing: border-box; /* Add box-sizing to include padding and border in width and height calculations */
 }
 
 h1 {
@@ -38,6 +39,7 @@ img {
   align-items: center;
   gap: 3rem;
   margin-top: 5rem;
+  flex-wrap: wrap; /* Add flex-wrap to wrap choices to the next line on smaller screens */
 }
 
 .score-board {
@@ -47,6 +49,7 @@ img {
   font-size: 2rem;
   margin-top: 3rem;
   gap: 5rem;
+  flex-wrap: wrap; /* Add flex-wrap to wrap score board to the next line on smaller screens */
 }
 
 #user-score,
@@ -65,4 +68,69 @@ img {
   display: inline;
   padding: 1rem;
   border-radius: 1rem;
-}0
+}
+
+/* Add media queries for responsiveness */
+
+/* For screens with a maximum width of 768px (e.g., tablets) */
+@media (max-width: 768px) {
+  .choice {
+    height: 120px;
+    width: 120px;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .choices {
+    gap: 2rem;
+  }
+
+  .score-board {
+    font-size: 1.5rem;
+    gap: 3rem;
+  }
+
+  #user-score,
+  #comp-score {
+    font-size: 3rem;
+  }
+}
+
+/* For screens with a maximum width of 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  h1 {
+    height: 3rem;
+    line-height: 3rem;
+  }
+
+  .choice {
+    height: 90px;
+    width: 90px;
+  }
+
+  img {
+    height: 70px;
+    width: 70px;
+  }
+
+  .choices {
+    gap: 1rem;
+  }
+
+  .score-board {
+    font-size: 1rem;
+    gap: 2rem;
+  }
+
+  #user-score,
+  #comp-score {
+    font-size: 2rem;
+  }
+
+  #msg {
+    font-size: 1.5rem;
+  }
+}
