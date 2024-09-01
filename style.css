@@ -8,13 +8,13 @@
 h1 {
   background-color: #081b31;
   color: #fff;
-  height: 5rem;
-  line-height: 5rem;
+  height: 10vh; /* Changed to 10vh for better responsiveness */
+  line-height: 10vh; /* Changed to 10vh for better responsiveness */
 }
 
 .choice {
-  height: 165px;
-  width: 165px;
+  height: 20vw; /* Changed to 20vw for better responsiveness */
+  width: 20vw; /* Changed to 20vw for better responsiveness */
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -24,11 +24,12 @@ h1 {
 .choice:hover {
   cursor: pointer;
   background-color: #081b31;
+  transform: scale(1.1); /* Added a scale transformation for a more prominent hover effect */
 }
 
 img {
-  height: 150px;
-  width: 150px;
+  height: 80%; /* Changed to 80% to maintain aspect ratio */
+  width: 80%; /* Changed to 80% to maintain aspect ratio */
   object-fit: cover;
   border-radius: 50%;
 }
