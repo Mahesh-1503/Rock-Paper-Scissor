@@ -19,31 +19,31 @@ const playSound = (type) => {
   // Set parameters based on sound type
   switch(type) {
     case 'select':
-      oscillator.frequency.value = 800; // Lower frequency
+      oscillator.frequency.value = 1200;
       oscillator.type = 'sine';
-      gain.gain.value = 0.3; // Reduced volume
-      oscillator.stop(ctx.currentTime + 0.1); // Shorter duration
+      gain.gain.value = 0.5;
+      oscillator.stop(ctx.currentTime + 0.15);
       break;
 
     case 'win':
-      oscillator.frequency.value = 600; // More pleasant frequency
+      oscillator.frequency.value = 700;
       oscillator.type = 'triangle';
-      gain.gain.value = 0.4; // Reduced volume
-      oscillator.stop(ctx.currentTime + 0.2); // Shorter duration
+      gain.gain.value = 0.8;
+      oscillator.stop(ctx.currentTime + 0.4);
       break;
 
     case 'lose':
-      oscillator.frequency.value = 400; // Lower frequency
-      oscillator.type = 'sine'; // Changed to sine for softer sound
-      gain.gain.value = 0.3; // Reduced volume
-      oscillator.stop(ctx.currentTime + 0.2); // Shorter duration
+      oscillator.frequency.value = 450;
+      oscillator.type = 'square';
+      gain.gain.value = 0.6;
+      oscillator.stop(ctx.currentTime + 0.3);
       break;
 
     case 'draw':
-      oscillator.frequency.value = 500; // More neutral frequency
-      oscillator.type = 'triangle'; // Changed to triangle for softer sound
-      gain.gain.value = 0.35; // Reduced volume
-      oscillator.stop(ctx.currentTime + 0.2); // Shorter duration
+      oscillator.frequency.value = 550;
+      oscillator.type = 'sawtooth';
+      gain.gain.value = 0.7;
+      oscillator.stop(ctx.currentTime + 0.35);
       break;
   }
 };
