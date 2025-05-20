@@ -13,48 +13,61 @@ const genCompChoice = () => {
   return options[randIdx];
 };
 
-const drawGame = () => {
-  msg.innerText = "Game was Draw. Play again.";
-  msg.style.backgroundColor = "#081b31";
-};
-
-const showWinner = (userWin, userChoice, compChoice) => {
+const updateMessage = (userWin, userChoice, compChoice) => {
   if (userWin) {
     userScore++;
     userScorePara.innerText = userScore;
-    msg.innerText = `You win! Your ${userChoice} beats ${compChoice}`;
-    msg.style.backgroundColor = "green";
+    msg.innerHTML = `
+      <span class="text-green-600">Win! </span>
+      ${userChoice} > ${compChoice}
+    `;
+  } else if (userChoice === compChoice) {
+    msg.innerHTML = `
+      <span class="text-gray-600">Draw. </span>
+      Play again
+    `;
   } else {
     compScore++;
     compScorePara.innerText = compScore;
-    msg.innerText = `You lost. ${compChoice} beats your ${userChoice}`;
-    msg.style.backgroundColor = "red";
+    msg.innerHTML = `
+      <span class="text-red-600">Lost. </span>
+      ${compChoice} > ${userChoice}
+    `;
   }
 };
+
+const resetGame = () => {
+  userScore = 0;
+  compScore = 0;
+  userScorePara.innerText = userScore;
+  compScorePara.innerText = compScore;
+  msg.innerHTML = `Play your move`;
+};
+
+// Add event listener for reset button
+const resetBtn = document.querySelector("#resetBtn");
+if (resetBtn) {
+  resetBtn.addEventListener("click", resetGame);
+}
 
 const playGame = (userChoice) => {
-  //Generate computer choice
   const compChoice = genCompChoice();
-
+  
+  let userWin = false;
   if (userChoice === compChoice) {
-    //Draw Game
-    drawGame();
+    updateMessage(false, userChoice, compChoice);
+  } else if (userChoice === "rock") {
+    userWin = compChoice === "scissors";
+  } else if (userChoice === "paper") {
+    userWin = compChoice === "rock";
   } else {
-    let userWin = true;
-    if (userChoice === "rock") {
-      //scissors, paper
-      userWin = compChoice === "paper" ? false : true;
-    } else if (userChoice === "paper") {
-      //rock, scissors
-      userWin = compChoice === "scissors" ? false : true;
-    } else {
-      //rock, paper
-      userWin = compChoice === "rock" ? false : true;
-    }
-    showWinner(userWin, userChoice, compChoice);
+    userWin = compChoice === "paper";
   }
+  
+  updateMessage(userWin, userChoice, compChoice);
 };
 
+// Initialize event listeners
 choices.forEach((choice) => {
   choice.addEventListener("click", () => {
     const userChoice = choice.getAttribute("id");
