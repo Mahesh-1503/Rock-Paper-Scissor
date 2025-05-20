@@ -1,12 +1,60 @@
 let userScore = 0;
 let compScore = 0;
 
+// Sound effects
+const playSound = (type) => {
+  // Create audio context
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  // Create oscillator
+  const oscillator = ctx.createOscillator();
+  oscillator.connect(ctx.destination);
+  oscillator.start();
+
+  // Add a gain node for volume control
+  const gain = ctx.createGain();
+  gain.connect(ctx.destination);
+  oscillator.connect(gain);
+
+  // Set parameters based on sound type
+  switch(type) {
+    case 'select':
+      oscillator.frequency.value = 800; // Lower frequency
+      oscillator.type = 'sine';
+      gain.gain.value = 0.3; // Reduced volume
+      oscillator.stop(ctx.currentTime + 0.1); // Shorter duration
+      break;
+
+    case 'win':
+      oscillator.frequency.value = 600; // More pleasant frequency
+      oscillator.type = 'triangle';
+      gain.gain.value = 0.4; // Reduced volume
+      oscillator.stop(ctx.currentTime + 0.2); // Shorter duration
+      break;
+
+    case 'lose':
+      oscillator.frequency.value = 400; // Lower frequency
+      oscillator.type = 'sine'; // Changed to sine for softer sound
+      gain.gain.value = 0.3; // Reduced volume
+      oscillator.stop(ctx.currentTime + 0.2); // Shorter duration
+      break;
+
+    case 'draw':
+      oscillator.frequency.value = 500; // More neutral frequency
+      oscillator.type = 'triangle'; // Changed to triangle for softer sound
+      gain.gain.value = 0.35; // Reduced volume
+      oscillator.stop(ctx.currentTime + 0.2); // Shorter duration
+      break;
+  }
+};
+
+// Game elements
 const choices = document.querySelectorAll(".choice");
 const msg = document.querySelector("#msg");
-
 const userScorePara = document.querySelector("#user-score");
 const compScorePara = document.querySelector("#comp-score");
 
+// Game functions
 const genCompChoice = () => {
   const options = ["rock", "paper", "scissors"];
   const randIdx = Math.floor(Math.random() * 3);
@@ -17,11 +65,13 @@ const updateMessage = (userWin, userChoice, compChoice) => {
   if (userWin) {
     userScore++;
     userScorePara.innerText = userScore;
+    playSound('win');
     msg.innerHTML = `
       <span class="text-green-600">Win! </span>
       ${userChoice} > ${compChoice}
     `;
   } else if (userChoice === compChoice) {
+    playSound('draw');
     msg.innerHTML = `
       <span class="text-gray-600">Draw. </span>
       Play again
@@ -29,6 +79,7 @@ const updateMessage = (userWin, userChoice, compChoice) => {
   } else {
     compScore++;
     compScorePara.innerText = compScore;
+    playSound('lose');
     msg.innerHTML = `
       <span class="text-red-600">Lost. </span>
       ${compChoice} > ${userChoice}
@@ -42,16 +93,12 @@ const resetGame = () => {
   userScorePara.innerText = userScore;
   compScorePara.innerText = compScore;
   msg.innerHTML = `Play your move`;
+  playSound('select');
 };
-
-// Add event listener for reset button
-const resetBtn = document.querySelector("#resetBtn");
-if (resetBtn) {
-  resetBtn.addEventListener("click", resetGame);
-}
 
 const playGame = (userChoice) => {
   const compChoice = genCompChoice();
+  playSound('select');
   
   let userWin = false;
   if (userChoice === compChoice) {
@@ -67,7 +114,12 @@ const playGame = (userChoice) => {
   updateMessage(userWin, userChoice, compChoice);
 };
 
-// Initialize event listeners
+// Event listeners
+const resetBtn = document.querySelector("#resetBtn");
+if (resetBtn) {
+  resetBtn.addEventListener("click", resetGame);
+}
+
 choices.forEach((choice) => {
   choice.addEventListener("click", () => {
     const userChoice = choice.getAttribute("id");
