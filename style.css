@@ -1,28 +1,23 @@
 /* Custom animations */
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-10px); }
-  75% { transform: translateX(10px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
 }
 
 .shake {
   animation: shake 0.5s ease-in-out;
 }
 
-#user-score,
-#comp-score {
-  font-size: 4rem;
-}
-
-.msg-container {
-  margin-top: 5rem;
-}
-
+/* Message styling with Tailwind compatibility */
 #msg {
-  background-color: #081b31;
-  color: #fff;
-  font-size: 2rem;
-  display: inline;
-  padding: 1rem;
-  border-radius: 1rem;
+  display: block;
+  min-height: 2rem;
 }

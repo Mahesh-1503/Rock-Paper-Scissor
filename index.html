@@ -1,107 +1,127 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Rock Paper Scissors</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      html, body {
-        height: 100%;
-        overflow-x: hidden;
-      }
-    </style>
-  </head>
-  <body class="h-full bg-gradient-to-br from-gray-50 to-gray-100">
-    <div class="min-h-screen flex flex-col">
-      <header class="sticky top-0 z-10 bg-white/90 backdrop-blur-sm shadow-sm">
-        <div class="container mx-auto px-4 py-4">
-          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-            Rock Paper Scissors
-          </h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Rock Paper Scissors</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-10 bg-white/90 backdrop-blur-sm shadow-sm">
+      <div class="container mx-auto px-4 py-4">
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+          Rock Paper Scissors
+        </h1>
+      </div>
+    </header>
+
+    <main class="flex-1 flex flex-col items-center py-8">
+      <div class="max-w-4xl w-full">
+        <!-- Game Choices -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+          <div id="rock" class="choice relative group cursor-pointer">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-blue-900/5 rounded-full transition-all duration-300 group-hover:from-blue-900/20 group-hover:to-blue-900/10">
+            </div>
+            <div
+              class="relative p-4 sm:p-6 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <img src="rock.png" class="w-24 sm:w-32 h-24 sm:h-32 object-cover rounded-full" alt="Rock" />
+              <div
+                class="absolute inset-0 rounded-full bg-blue-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">Rock</span>
+              </div>
+            </div>
+          </div>
+          <div id="paper" class="choice relative group cursor-pointer">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-blue-900/5 rounded-full transition-all duration-300 group-hover:from-blue-900/20 group-hover:to-blue-900/10">
+            </div>
+            <div
+              class="relative p-4 sm:p-6 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <img src="paper.png" class="w-24 sm:w-32 h-24 sm:h-32 object-cover rounded-full" alt="Paper" />
+              <div
+                class="absolute inset-0 rounded-full bg-blue-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">Paper</span>
+              </div>
+            </div>
+          </div>
+          <div id="scissors" class="choice relative group cursor-pointer">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-blue-900/5 rounded-full transition-all duration-300 group-hover:from-blue-900/20 group-hover:to-blue-900/10">
+            </div>
+            <div
+              class="relative p-4 sm:p-6 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <img src="scissors.png" class="w-24 sm:w-32 h-24 sm:h-32 object-cover rounded-full" alt="Scissors" />
+              <div
+                class="absolute inset-0 rounded-full bg-blue-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">Scissors</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
 
-      <main class="flex-1 flex flex-col items-center py-8">
-        <div class="max-w-4xl w-full">
-          <!-- Game Choices -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-            <div class="choice relative group">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-blue-900/5 rounded-full transition-all duration-300 group-hover:from-blue-900/20 group-hover:to-blue-900/10"></div>
-              <div class="relative p-4 sm:p-6 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img src="rock.png" class="w-24 sm:w-32 h-24 sm:h-32 object-cover rounded-full" alt="Rock" />
-                <div class="absolute inset-0 rounded-full bg-blue-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span class="text-white text-2xl">Rock</span>
-                </div>
-              </div>
+        <!-- Score Board -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+          <div class="score-card relative bg-white rounded-2xl shadow-lg p-6">
+            <div
+              class="absolute -top-3 -right-3 bg-blue-900 text-white rounded-full w-10 h-10 flex items-center justify-center">
+              <span class="text-sm font-bold">You</span>
             </div>
-            <div class="choice relative group">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-blue-900/5 rounded-full transition-all duration-300 group-hover:from-blue-900/20 group-hover:to-blue-900/10"></div>
-              <div class="relative p-4 sm:p-6 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img src="paper.png" class="w-24 sm:w-32 h-24 sm:h-32 object-cover rounded-full" alt="Paper" />
-                <div class="absolute inset-0 rounded-full bg-blue-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span class="text-white text-2xl">Paper</span>
-                </div>
-              </div>
-            </div>
-            <div class="choice relative group">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-blue-900/5 rounded-full transition-all duration-300 group-hover:from-blue-900/20 group-hover:to-blue-900/10"></div>
-              <div class="relative p-4 sm:p-6 rounded-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img src="scissors.png" class="w-24 sm:w-32 h-24 sm:h-32 object-cover rounded-full" alt="Scissors" />
-                <div class="absolute inset-0 rounded-full bg-blue-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span class="text-white text-2xl">Scissors</span>
-                </div>
-              </div>
+            <div class="text-center">
+              <p class="text-4xl sm:text-5xl font-bold text-blue-900 mb-2" id="user-score">0</p>
+              <p class="text-gray-500">Your Score</p>
             </div>
           </div>
-
-          <!-- Score Board -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-            <div class="score-card relative bg-white rounded-2xl shadow-lg p-6">
-              <div class="absolute -top-3 -right-3 bg-blue-900 text-white rounded-full w-10 h-10 flex items-center justify-center">
-                <span class="text-sm font-bold">You</span>
-              </div>
-              <div class="text-center">
-                <p class="text-4xl sm:text-5xl font-bold text-blue-900 mb-2" id="user-score">0</p>
-                <p class="text-gray-500">Your Score</p>
-              </div>
+          <div class="score-card relative bg-white rounded-2xl shadow-lg p-6">
+            <div
+              class="absolute -top-3 -left-3 bg-blue-900 text-white rounded-full w-10 h-10 flex items-center justify-center">
+              <span class="text-sm font-bold">CPU</span>
             </div>
-            <div class="score-card relative bg-white rounded-2xl shadow-lg p-6">
-              <div class="absolute -top-3 -left-3 bg-blue-900 text-white rounded-full w-10 h-10 flex items-center justify-center">
-                <span class="text-sm font-bold">CPU</span>
-              </div>
-              <div class="text-center">
-                <p class="text-4xl sm:text-5xl font-bold text-blue-900 mb-2" id="comp-score">0</p>
-                <p class="text-gray-500">CPU Score</p>
-              </div>
+            <div class="text-center">
+              <p class="text-4xl sm:text-5xl font-bold text-blue-900 mb-2" id="comp-score">0</p>
+              <p class="text-gray-500">CPU Score</p>
             </div>
           </div>
+        </div>
 
-          <!-- Message Container -->
-          <div class="w-full mb-8">
-            <div class="bg-white rounded-2xl shadow-lg">
-              <div class="p-4 sm:p-6">
-                <div class="flex flex-col items-center space-y-4">
-                  <div class="flex-1 min-w-0">
-                    <div class="text-center sm:text-left">
-                      <div class="flex items-center justify-center">
-                        <p id="msg" class="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 font-medium whitespace-nowrap overflow-hidden">
-                          Play your move
-                        </p>
-                      </div>
+        <!-- Message Container -->
+        <div class="w-full mb-8">
+          <div class="bg-white rounded-2xl shadow-lg">
+            <div class="p-4 sm:p-6">
+              <div class="flex flex-col items-center space-y-4">
+                <div class="flex-1 min-w-0">
+                  <div class="text-center sm:text-left">
+                    <div class="flex items-center justify-center">
+                      <p id="msg" class="text-xs sm:text-sm md:text-base lg:text-lg font-medium text-center px-4 py-2">
+                        Play your move
+                      </p>
                     </div>
                   </div>
-                  <button id="resetBtn" class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 max-w-[200px] mx-auto">
-                    Reset Game
-                  </button>
                 </div>
+                <button id="resetBtn"
+                  class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 max-w-[200px] mx-auto">
+                  Reset Game
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
-    <script src="app.js"></script>
-  </body>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+
 </html>
